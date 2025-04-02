@@ -6,6 +6,7 @@
 /.idea
 .idea/
 dist
+.env
 .husky
 /.pnp
 .pnp.*
