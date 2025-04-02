@@ -3,7 +3,6 @@
 
 # dependencies
 /node_modules
-/.idea
 .idea/
 dist
 .env
@@ -43,4 +42,4 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
-next-env.d.ts
+
