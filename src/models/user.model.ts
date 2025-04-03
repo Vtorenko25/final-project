@@ -1,5 +1,6 @@
 import { model, Schema } from "mongoose";
 
+import { RoleEnum } from "../enums/role.enum";
 import { IUser } from "../interfaces/user.interface";
 
 const userSchema = new Schema({
@@ -15,10 +16,11 @@ const userSchema = new Schema({
   already_paid: { type: Boolean, default: null },
   group: { type: String, default: null },
   created_at: { type: Date, default: Date.now },
-  manager: { type: String, default: null },
+  manager: { enum: RoleEnum, type: String, default: null },
   utm: { type: String },
   msg: { type: String, default: null },
   status: { type: String, default: null },
+  role: { type: String, required: true, default: RoleEnum.USER },
 });
 
 export const User = model<IUser>("users", userSchema);
