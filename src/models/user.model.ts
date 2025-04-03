@@ -1,0 +1,22 @@
+import { model, Schema } from "mongoose";
+
+const userSchema = new Schema({
+  name: { type: String, required: true },
+  surname: { type: String, required: true },
+  email: { type: String, required: true, unique: true },
+  phone: { type: String, required: true },
+  age: { type: Number, required: true },
+  course: { type: String, required: true },
+  course_format: { type: String, required: true },
+  course_type: { type: String, required: true },
+  sum: { type: Number, default: null },
+  already_paid: { type: Boolean, default: null },
+  group: { type: String, default: null },
+  created_at: { type: Date, default: Date.now },
+  manager: { type: String, default: null },
+  utm: { type: String },
+  msg: { type: String, default: null },
+  status: { type: String, default: null },
+});
+
+export const User = model("users", userSchema);
