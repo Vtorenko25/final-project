@@ -13,6 +13,10 @@
 
 cd backend
 
+2. Запуск проекту
+
+npm install
+
 npm run start:dev
 
 docker-compose up --build
@@ -21,9 +25,7 @@ cd frontend
 
 npm run dev
 
-2. Запуск проекту
 
-npm install
-
+npm run start одна команда
 
 

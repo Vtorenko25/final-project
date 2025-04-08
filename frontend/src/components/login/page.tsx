@@ -10,10 +10,10 @@ export default function LoginComponents() {
     const router = useRouter();
 
     const handleLogin = async () => {
-        const res = await fetch('http://localhost:3000/auth/sign-in', {
+        const res = await fetch('http://localhost:3000/login', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email: 'admin@gmail.com', password: 'admin' }),
+            body: JSON.stringify({ email, password }),
         });
 
         if (res.ok) {
