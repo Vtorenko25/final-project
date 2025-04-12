@@ -5,7 +5,7 @@
 /node_modules
 .idea/
 dist
-backend/.env
+frontend/.env
 .husky
 /.pnp
 .pnp.*
@@ -35,7 +35,7 @@ yarn-debug.log*
 yarn-error.log*
 
 # env files (can opt-in for committing if needed)
-backend/.env
+frontend/.env
 
 # vercel
 .vercel

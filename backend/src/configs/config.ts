@@ -7,6 +7,9 @@ export const config = {
 
   mongoUrl: process.env.MONGODB_URI || "mongodb://localhost:27017/yourdb",
 
+  // adminEmail: process.env.ADMIN_EMAIL,
+  // adminPassword: process.env.ADMIN_PASSWORD,
+
   jwtAccessSecret: process.env.JWT_ACCESS_SECRET,
   jwtAccessExpiresIn: process.env.JWT_ACCESS_EXPIRES_IN,
   jwtRefreshSecret: process.env.JWT_REFRESH_SECRET,

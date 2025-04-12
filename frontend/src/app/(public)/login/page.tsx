@@ -1,5 +1,5 @@
 import React from 'react';
-import LoginComponents from "@/components/login/page";
+import LoginComponents from "@/app/components/login/LoginComponent";
 import "./login-page.css"
 
 const LoginPage = () => {

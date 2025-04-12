@@ -1,15 +1,10 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import {IUser} from "@/app/models/IUser";
 
-interface User {
-    _id: string;
-    email: string;
-    role: string;
-}
-
-export default function HomePage() {
-    const [users, setUsers] = useState<User[]>([]);
+export default function UsersComponent() {
+    const [users, setUsers] = useState<IUser[]>([]);
 
     useEffect(() => {
         const fetchUsers = async () => {
@@ -31,7 +26,7 @@ export default function HomePage() {
             <ul>
                 <h1>users</h1>
                 {users.map((user) => (
-                    <li key={user._id}>{user.email} — {user.role}</li>
+                    <li key={user._id}>{user.email} {user.name} {user.course}</li>
                 ))}
             </ul>
         </div>

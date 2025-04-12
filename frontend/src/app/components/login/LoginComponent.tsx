@@ -4,14 +4,14 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import "./page.css"
 
-export default function LoginComponents() {
+export default function LoginComponent() {
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const router = useRouter();
 
     const handleLogin = async () => {
         try {
-            const res = await fetch('http://localhost:3001/login', {
+            const res = await fetch('http://localhost:3001/auth/sign-in', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email, password }),
