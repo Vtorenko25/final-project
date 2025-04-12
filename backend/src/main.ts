@@ -1,3 +1,4 @@
+import cors from "cors";
 import express, { NextFunction, Request, Response } from "express";
 import * as mongoose from "mongoose";
 
@@ -8,6 +9,12 @@ import { userRouter } from "./routes/user.router";
 
 const app = express();
 app.use(express.json());
+
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+  }),
+);
 
 app.use("/users", userRouter);
 
