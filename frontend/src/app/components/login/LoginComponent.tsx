@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import "./page.css"
+import {ITokens} from "@/app/models/ITokens";
 
 export default function LoginComponent() {
     const [email, setEmail] = useState<string>('');
@@ -18,8 +19,8 @@ export default function LoginComponent() {
             });
 
             if (res.ok) {
-                const { token } = await res.json();
-                localStorage.setItem('token', token);
+                const tokensPair:ITokens =await res.json();
+                localStorage.setItem('tokens', JSON.stringify(tokensPair));
                 router.push('/users');
             } else {
                 const errorData = await res.json();

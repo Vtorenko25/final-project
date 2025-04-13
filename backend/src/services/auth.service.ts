@@ -1,9 +1,11 @@
 import { ADMIN_EMAIL, ADMIN_PASSWORD } from "../constants/constants";
 import { ApiError } from "../errors/api.error";
+import { ILogin } from "../interfaces/login.interface";
+import { tokenService } from "./token.service";
 
 class AuthService {
-  public async signIn(dto: { email: string; password: string }): Promise<any> {
-    const { email, password } = dto;
+  public async signIn(dto: ILogin): Promise<any> {
+    const user = await dto;
 
     // if (email !== config.adminEmail) {
     //   console.log("DTO email:", email);
@@ -15,24 +17,23 @@ class AuthService {
     //   console.log("ENV password:", config.adminPassword);
     //   throw new ApiError("Невірний email або пароль", 401);
     // }
-    if (email !== ADMIN_EMAIL) {
+    if (user.email !== ADMIN_EMAIL) {
       throw new ApiError("Невірний email або пароль", 401);
     }
-    if (password !== ADMIN_PASSWORD) {
+    if (user.password !== ADMIN_PASSWORD) {
       throw new ApiError("Невірний email або пароль", 401);
     }
-    console.log(email, password);
-    return { password, email };
+    const tokenPayload = {
+      email: user.email,
+      role: user.role,
+      userId: user.userId,
+    };
+    const tokens = await tokenService.genereteTokens(tokenPayload);
+    console.log(tokens);
+    return {
+      tokens,
+    };
   }
-
-  //   const token = jwt.sign(
-  //       { email, role: "admin" },
-  //       config.jwtAccessSecret as string,
-  //       { expiresIn: config.jwtAccessExpiresIn }
-  //   );
-  //
-  //   return { token };
-  // }
 }
 
 export const authService = new AuthService();
