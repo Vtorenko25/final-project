@@ -5,6 +5,7 @@ export interface IToken {
   accessToken: string;
   refreshToken: string;
   _userId: string;
+  email: string;
   createdAt: Date;
   updatedAt: Date;
 }

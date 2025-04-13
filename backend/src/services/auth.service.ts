@@ -1,10 +1,12 @@
 import { ADMIN_EMAIL, ADMIN_PASSWORD } from "../constants/constants";
 import { ApiError } from "../errors/api.error";
 import { ILogin } from "../interfaces/login.interface";
+import { ITokenPair } from "../interfaces/token.interface";
+import { tokenRepository } from "../repositories/token.repository";
 import { tokenService } from "./token.service";
 
 class AuthService {
-  public async signIn(dto: ILogin): Promise<any> {
+  public async signIn(dto: ILogin): Promise<ITokenPair> {
     const user = await dto;
 
     // if (email !== config.adminEmail) {
@@ -29,10 +31,8 @@ class AuthService {
       userId: user.userId,
     };
     const tokens = await tokenService.genereteTokens(tokenPayload);
-    console.log(tokens);
-    return {
-      tokens,
-    };
+    await tokenRepository.create({ ...tokens, email: user.email });
+    return tokens;
   }
 }
 
