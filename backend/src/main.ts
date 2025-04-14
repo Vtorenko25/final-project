@@ -20,15 +20,16 @@ app.use("/users", userRouter);
 
 app.use("/auth", authRouter);
 
-app.use(
-  "*",
-  (error: ApiError, req: Request, res: Response, next: NextFunction) => {
-    const status = error.status || 500;
-    const message = error.message ?? "Something went wrong";
+app.use("*", (req, res, next) => {
+  next(new ApiError("Route not found", 404));
+});
 
-    res.status(status).json({ status, message });
-  },
-);
+app.use((error: ApiError, req: Request, res: Response, next: NextFunction) => {
+  const status = error.status || 500;
+  const message = error.message ?? "Something went wrong";
+
+  res.status(status).json({ status, message });
+});
 
 app.listen(config.port, async () => {
   await mongoose.connect(config.mongoUrl);
