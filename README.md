@@ -1,31 +1,34 @@
 
 1. Клонуйте репозиторій:
-   https://github.com/Vtorenko25/project-crm
-2. Створіть файл .env у папці backend та налаштуйте його:
-   PORT=
-   MONGO_DB_URL=
-Проект запустить сервер на порту, вказаному в .env файлі (за замовчуванням — порт 3000).
+   https://github.com/Vtorenko25/final-project/tree/master
+
 
 ## Запуск проекту
 
-1. Переконайтесь що ви в папці backend
-Для цього викнайте команду
-
-cd backend
-
-2. Запуск проекту
-
+1. Відкрийте термінал, перейдіть в папку backend. Для цього викнайте команду
+cd backend 
+Наступна команда
 npm install
-
+Запускаємо сервер командою
 npm run start:dev
-
-docker-compose up --build
-
+Сервер має запуститись на порту 3001
+2. Відкрийте термінал, перейдіть в папку frontend. Для цього викнайте команду
 cd frontend
-
+Наступна команда
+npm install
+Запускаємо сервер командою
 npm run dev
+3. Проект стартує на http://localhost:3000/login
+email: admin@gmail.com
+пароль: admin
 
 
-npm run start одна команда
+
+
+
+
+
+
+
 
 
