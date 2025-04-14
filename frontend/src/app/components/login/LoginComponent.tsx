@@ -2,33 +2,21 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import "./page.css"
-import {ITokens} from "@/app/models/ITokens";
+import './page.css';
+import { authService } from '@/app/services/auth.service';
 
 export default function LoginComponent() {
-    const [email, setEmail] = useState<string>('');
-    const [password, setPassword] = useState<string>('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
     const router = useRouter();
 
     const handleLogin = async () => {
         try {
-            const res = await fetch('http://localhost:3001/auth/sign-in', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email, password }),
-            });
-
-            if (res.ok) {
-                const tokensPair:ITokens =await res.json();
-                localStorage.setItem('tokens', JSON.stringify(tokensPair));
-                router.push('/users');
-            } else {
-                const errorData = await res.json();
-                alert(errorData.message || 'Невірні дані');
-            }
-        } catch (error) {
-            console.error('Error during login:', error);
-            alert('Помилка під час авторизації, спробуйте ще раз.');
+            const tokens = await authService.signIn(email, password);
+            localStorage.setItem('tokens', JSON.stringify(tokens));
+            router.push('/users');
+        } catch (error: any) {
+            alert(error.message || 'Помилка авторизації');
         }
     };
 

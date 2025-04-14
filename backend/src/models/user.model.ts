@@ -20,7 +20,12 @@ const userSchema = new Schema({
   utm: { type: String },
   msg: { type: String, default: null },
   status: { type: String, default: null },
-  role: { type: String, required: true, default: RoleEnum.USER },
+  role: {
+    enum: RoleEnum,
+    type: String,
+    required: true,
+    default: RoleEnum.ADMIN,
+  },
 });
 
 export const User = model<IUser>("users", userSchema);
