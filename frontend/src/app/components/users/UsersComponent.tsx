@@ -26,9 +26,9 @@ export default function UsersComponent() {
         <div>
             <h1>Список користувачів</h1>
             <ul>
-                {users.map((user) => (
+                {users.map((user, index) => (
                     <li key={user._id}>
-                        {user.email} {user.name} {user.course}
+                        {index + 1}.  {user.email} {user.name}
                     </li>
                 ))}
             </ul>
